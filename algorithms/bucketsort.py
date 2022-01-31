@@ -2,7 +2,7 @@
 
 from utils import SortingAlgorithm
 
-def bucketsort(data, bucketsortalgorithm=sorted):
+def bucketsort_func(data, bucketsortalgorithm=sorted):
     mi = min(data)
     ma = max(data)
 
@@ -27,7 +27,7 @@ def bucketsort(data, bucketsortalgorithm=sorted):
 # Testing
 
 if __name__ == '__main__':
-    bucketsort = SortingAlgorithm(bucketsort)
+    bucketsort = SortingAlgorithm(bucketsort_func)
     
     r = bucketsort.test(20)
     print(r)
