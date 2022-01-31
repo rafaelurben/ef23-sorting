@@ -10,22 +10,28 @@ def random_list(n):
     random.shuffle(l)
     return l
 
-def generate_graph(algorithm, lengths=1000, samples=100, runs_per_sample=10):
+def generate_graph(algorithm, lengths=10000, samples=10):
     print("Generating graph...")
 
-    results = []
-    for listlength in tqdm(range(1, lengths)):
-        wholetime = 0
-        for _ in range(samples):
-            unsortedlist = random_list(listlength)
-            start = time.time()
-            for _ in range(runs_per_sample):
-                sortedlist = algorithm(unsortedlist)
-            end = time.time()
-            wholetime += (end-start)
-        results.append(wholetime/samples)
+    numberlist = range(1, lengths)
+    timelist = []
+    for listlength in tqdm(numberlist):
+        unsortedlist = random_list(listlength)
 
-    plt.plot(results, "b.")
+        start = time.time()
+        for _ in range(samples):
+            sortedlist = algorithm(unsortedlist)
+        end = time.time()
+
+        wholetime = (end-start)
+        timelist.append(wholetime/samples)
+        
+        plt.plot(timelist, "b.")
+        plt.draw()
+        plt.pause(0.0001)
+        plt.clf()
+
+    plt.plot(numberlist, timelist, "b.")
     plt.show()
 
 if __name__ == '__main__':
