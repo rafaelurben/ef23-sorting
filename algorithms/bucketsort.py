@@ -2,11 +2,17 @@
 
 from utils import SortingAlgorithm
 
-def bucketsort_func(data, bucketsortalgorithm=sorted):
+
+def bucketsort_func(data, algorithm_for_sorting_buckets=sorted):
+    """
+    Run the bucketsort alogrithm on the given data.
+    """
+
     mi = min(data)
     ma = max(data)
 
     # Create bucket amount depending on the length of the list
+    # This could be changed, but here it creates buckets of +- size 10
     bucketcount = len(data)//10+1
     buckets = list([] for i in range(bucketcount))
     bucketrange = (ma-mi)/bucketcount+0.000000001
@@ -16,7 +22,8 @@ def bucketsort_func(data, bucketsortalgorithm=sorted):
         bucketnum = (elem-mi)/bucketrange
         buckets[int(bucketnum)].append(elem)
 
-    sortedbuckets = map(bucketsortalgorithm, buckets)
+    # Run the algorithm to sort each bucket
+    sortedbuckets = map(algorithm_for_sorting_buckets, buckets)
 
     result = []
     for bucket in sortedbuckets:
@@ -26,9 +33,10 @@ def bucketsort_func(data, bucketsortalgorithm=sorted):
 
 # Testing
 
+
 if __name__ == '__main__':
-    bucketsort = SortingAlgorithm(bucketsort_func)
-    
+    bucketsort = SortingAlgorithm(bucketsort_func, sorted)
+
     r = bucketsort.test(20)
     print(r)
 
