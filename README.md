@@ -27,3 +27,5 @@ In the algorithms folder, there is currently one algorithm:
 ### Bucketsort
 
 ![Bucketsort](./plots/bucketsort.png)
+
+Note: All buckets are +- size 10 and for sorting the buckets themselves, the internal `sorted` function was used.
