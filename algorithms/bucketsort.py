@@ -25,6 +25,7 @@ def bucketsort_func(data, algorithm_for_sorting_buckets=sorted):
     # Run the algorithm to sort each bucket
     sortedbuckets = map(algorithm_for_sorting_buckets, buckets)
 
+    # Merge the buckets into a single list
     result = []
     for bucket in sortedbuckets:
         result += bucket
